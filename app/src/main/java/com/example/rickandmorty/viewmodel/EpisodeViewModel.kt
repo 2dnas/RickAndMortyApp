@@ -8,8 +8,9 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.example.rickandmorty.api.ApiService
 import com.example.rickandmorty.paging.EpisodesDataSource
+import javax.inject.Inject
 
-class EpisodeViewModel (private val api : ApiService) : ViewModel() {
+class EpisodeViewModel @Inject constructor(private val api : ApiService) : ViewModel() {
     val episodes = Pager(PagingConfig(pageSize = 10)){
         EpisodesDataSource(api)
     }.flow.cachedIn(viewModelScope)

@@ -49,4 +49,5 @@ class EpisodesAdapter
     fun setOnClickListener(listener : (id : Int) -> Unit) {
         this.listener = listener
     }
+
 }

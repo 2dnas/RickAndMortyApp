@@ -16,7 +16,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="name"
         android:textSize="20sp"
         android:textColor="@color/black"/>
 
@@ -24,8 +23,7 @@
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="dead or alive" />
+        android:layout_marginBottom="16dp" />
 
 
 

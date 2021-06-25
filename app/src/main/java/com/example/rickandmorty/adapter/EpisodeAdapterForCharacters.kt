@@ -15,7 +15,7 @@ class EpisodeAdapterForCharacters : RecyclerView.Adapter<EpisodeAdapterForCharac
         :RecyclerView.ViewHolder(binding.root){
         fun bindEpisode(episode : CertainEpisodeModel) = with(binding) {
             binding.root.setOnClickListener {
-                listener!!.invoke(episode.id!!)
+                listener?.invoke(episode.id ?: 0)
             }
             titleTextView.text = episode.name
             episodeTextView.text = episode.episode
@@ -36,6 +36,7 @@ class EpisodeAdapterForCharacters : RecyclerView.Adapter<EpisodeAdapterForCharac
 
     fun setData(list : List<CertainEpisodeModel>) {
         dataset = list
+        notifyDataSetChanged()
     }
 
     private var listener : ((id : Int) -> Unit)? = null
@@ -43,4 +44,6 @@ class EpisodeAdapterForCharacters : RecyclerView.Adapter<EpisodeAdapterForCharac
     fun setOnClickListener(listener : ((id: Int) -> Unit)) {
         this.listener = listener
     }
+
+
 }

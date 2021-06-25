@@ -1,19 +1,16 @@
 package com.example.rickandmorty.paging
 
-import androidx.paging.DataSource
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.rickandmorty.api.ApiService
-import com.example.rickandmorty.api.ApiUtils
-import com.example.rickandmorty.db.App
+import com.example.rickandmorty.App
 import com.example.rickandmorty.model.Episode
-import com.example.rickandmorty.model.EpisodesModel
 import java.lang.Exception
 
 class EpisodesDataSource(private val api : ApiService) : PagingSource<Int,Episode>() {
     var loadedItems = 0
     override fun getRefreshKey(state: PagingState<Int, Episode>): Int? {
-        TODO("Not yet implemented")
+        return null
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Episode> {
@@ -21,7 +18,7 @@ class EpisodesDataSource(private val api : ApiService) : PagingSource<Int,Episod
             val nextPageNumber = params.key ?: 0
             val response : List<Episode>
             val episodes = App.instance.db.getEpisodeDao().getEpisodes()
-            if(episodes!!.isNotEmpty() && episodes.size >= loadedItems){
+            if(episodes?.isNotEmpty() == true && episodes.size >= loadedItems){
                 response = episodes.subList(loadedItems,episodes.size)
                 loadedItems += 20
             } else {

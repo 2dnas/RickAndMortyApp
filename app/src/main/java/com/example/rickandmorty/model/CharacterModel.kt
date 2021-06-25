@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 data class CharacterModel (
     val info : InfoHelper?,
-    val result : List<Character>
+    val results : List<Character>
         )
 
 

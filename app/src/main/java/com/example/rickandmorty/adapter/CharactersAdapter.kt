@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rickandmorty.databinding.ListItemCharacterBinding
+import com.example.rickandmorty.model.CertainEpisodeModel
 import com.example.rickandmorty.model.Character
 import com.example.rickandmorty.setImage
 
@@ -13,7 +14,7 @@ class CharactersAdapter : RecyclerView.Adapter<CharactersAdapter.CharactersViewH
     inner class CharactersViewHolder(private val binding : ListItemCharacterBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(item : Character) = with(binding){
             binding.root.setOnClickListener {
-                listener!!.invoke(item.name!!)
+                listener?.invoke(item.name ?: "")
             }
             characterImage.setImage(item.image!!)
             name.text = item.name
@@ -41,5 +42,8 @@ class CharactersAdapter : RecyclerView.Adapter<CharactersAdapter.CharactersViewH
 
     fun setOnClickListener(listener : ((name : String) -> Unit)) {
         this.listener = listener
+    }
+    fun getData() : List<Character> {
+        return dataset
     }
 }
